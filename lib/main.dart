@@ -4,9 +4,7 @@ import 'package:tiktok_clone/features/main_navigation/main_navigation_screen.dar
 import 'constants/sizes.dart';
 
 void main() {
-  runApp(
-    const TikTokApp(),
-  );
+  runApp(const TikTokApp());
 }
 
 class TikTokApp extends StatelessWidget {
