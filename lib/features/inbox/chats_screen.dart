@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tiktok_clone/features/inbox/chat_detail_screen.dart';
 
 import '../../constants/sizes.dart';
 
@@ -20,10 +21,11 @@ class _ChatsScreenState extends State<ChatsScreen> {
   void _addItem() {
     if (_key.currentState != null) {
       _key.currentState!.insertItem(
+        //KEY에다가 아이템을 추가한다
         _items.length,
         duration: _duration,
       );
-      _items.add(_items.length);
+      _items.add(_items.length); //리스트에다가 아이템 추가
     }
   }
 
@@ -31,13 +33,59 @@ class _ChatsScreenState extends State<ChatsScreen> {
     if (_key.currentState != null) {
       _key.currentState!.removeItem(
         index,
-        (context, animation) => const ListTile(
-          title: Text('Bye Bye'),
+        (context, animation) => Container(
+          color: Colors.red,
+          child: SizeTransition(
+            sizeFactor: animation,
+            child: _makeTile(index), //다시 만들어서 보여준다
+          ),
         ),
         duration: _duration,
       );
-      _items.remove(index);
+      _items.removeAt(index);
     }
+  }
+
+  void _onChatTap() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const ChatDetailScreen(),
+      ),
+    );
+  }
+
+  Widget _makeTile(int index) {
+    //메세지를 위젯으로 따로 만들어준다
+    return ListTile(
+      onLongPress: () => _deleteItem(index),
+      onTap: _onChatTap,
+      leading: const CircleAvatar(
+        radius: 30,
+        foregroundImage: NetworkImage(
+            "https://avatars.githubusercontent.com/u/48172755?v=4"),
+        child: Text('갱문'),
+      ),
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          Text(
+            "하하 ($index)",
+            style: const TextStyle(
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          Text(
+            '2:16 PM',
+            style: TextStyle(
+              color: Colors.grey.shade500,
+              fontSize: Sizes.size12,
+            ),
+          ),
+        ],
+      ),
+      subtitle: const Text("Don't forget to make video"),
+    );
   }
 
   @override
@@ -64,35 +112,7 @@ class _ChatsScreenState extends State<ChatsScreen> {
             key: UniqueKey(),
             child: SizeTransition(
               sizeFactor: animation,
-              child: ListTile(
-                onLongPress: () => _deleteItem(index),
-                leading: const CircleAvatar(
-                  radius: 30,
-                  foregroundImage: NetworkImage(
-                      "https://avatars.githubusercontent.com/u/48172755?v=4"),
-                  child: Text('갱문'),
-                ),
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text(
-                      "하하 ($index)",
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    Text(
-                      '2:16 PM',
-                      style: TextStyle(
-                        color: Colors.grey.shade500,
-                        fontSize: Sizes.size12,
-                      ),
-                    ),
-                  ],
-                ),
-                subtitle: const Text("Don't forget to make video"),
-              ),
+              child: _makeTile(index),
             ),
           );
         },
