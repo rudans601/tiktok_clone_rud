@@ -11,19 +11,13 @@ class ChatDetailScreen extends StatefulWidget {
 }
 
 class _ChatDetailScreenState extends State<ChatDetailScreen> {
-  bool _isWriting = false;
-
   void _onStartWriting() {
-    setState(() {
-      _isWriting = true;
-    });
+    setState(() {});
   }
 
   void _stopWriting() {
     FocusScope.of(context).unfocus();
-    setState(() {
-      _isWriting = false;
-    });
+    setState(() {});
   }
 
   @override
