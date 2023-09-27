@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -29,8 +28,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
         children: [
           Switch(value: _notifictaions, onChanged: _onNotificationsChanged),
           CupertinoSwitch(
-              value: _notifictaions, onChanged: _onNotificationsChanged),
-          CupertinoCheckbox(
               value: _notifictaions, onChanged: _onNotificationsChanged),
           SwitchListTile(
               value: _notifictaions,
@@ -67,62 +64,31 @@ class _SettingsScreenState extends State<SettingsScreen> {
             },
           ),
           ListTile(
-            title: const Text("Log out (Android)"),
+            title: const Text("Log out (iOS / Bottom)"),
             textColor: Colors.red,
             onTap: () => {
-              showDialog(
+              showCupertinoModalPopup(
                 context: context,
-                builder: (context) => AlertDialog(
-                  icon: const FaIcon(FontAwesomeIcons.skull),
+                builder: (context) => CupertinoActionSheet(
                   title: const Text("Are you sure?"),
-                  content: const Text("Plx dont go"),
+                  message: const Text("Please dooooont goooooo"),
                   actions: [
-                    IconButton(
+                    CupertinoActionSheetAction(
+                      isDefaultAction: true,
                       onPressed: () => Navigator.of(context).pop(),
-                      icon: const FaIcon(
-                        FontAwesomeIcons.car,
-                      ),
+                      child: const Text("Not log out"),
                     ),
-                    TextButton(
+                    CupertinoActionSheetAction(
+                      isDestructiveAction: true,
                       onPressed: () => Navigator.of(context).pop(),
-                      child: const Text("Yes"),
+                      child: const Text("Yes plz"),
                     ),
                   ],
                 ),
               ),
             },
           ),
-          ListTile(
-            onTap: () async {
-              final date = await showDatePicker(
-                context: context,
-                initialDate: DateTime.now(),
-                firstDate: DateTime(1980),
-                lastDate: DateTime(2030),
-              );
-              print(date);
-              final time = await showTimePicker(
-                context: context,
-                initialTime: TimeOfDay.now(),
-              );
-              print(time);
-              final booking = await showDateRangePicker(
-                context: context,
-                firstDate: DateTime(1980),
-                lastDate: DateTime(2030),
-                builder: (context, child) {
-                  return Theme(
-                      data: ThemeData(
-                          appBarTheme: const AppBarTheme(
-                              foregroundColor: Colors.white,
-                              backgroundColor: Colors.black)),
-                      child: child!);
-                },
-              );
-              print(booking);
-            },
-            title: const Text("What is your birthday?"),
-          ),
+          const ListTile(),
           const AboutListTile(),
         ],
       ),
