@@ -20,6 +20,7 @@ class Sizes {
   static const size30 = 30.0;
   static const size32 = 32.0;
   static const size36 = 36.0;
+  static const size38 = 38.0;
   static const size40 = 40.0;
   static const size44 = 44.0;
   static const size48 = 48.0;
