@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
@@ -32,6 +33,7 @@ class _VideoPostState extends State<VideoPost>
   late final AnimationController _animationController;
 
   bool _isPaused = false;
+  bool _isMuted = false;
 
   void _onVideoChange() {
     if (_videoPlayerController.value.isInitialized) {
@@ -45,6 +47,10 @@ class _VideoPostState extends State<VideoPost>
   void _initVideoPlayer() async {
     await _videoPlayerController.initialize();
     await _videoPlayerController.setLooping(true); //영상이 끝날때 반복함
+    if (kIsWeb) {
+      await _videoPlayerController.setVolume(0);
+      _isMuted = true;
+    }
     _videoPlayerController.addListener(_onVideoChange);
     setState(() {});
   }
@@ -110,6 +116,17 @@ class _VideoPostState extends State<VideoPost>
     _onTogglePause();
   }
 
+  void _onMuteTap() {
+    setState(() {
+      _isMuted = !_isMuted;
+    });
+    if (_isMuted) {
+      _videoPlayerController.setVolume(0);
+    } else {
+      _videoPlayerController.setVolume(100);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return VisibilityDetector(
@@ -141,7 +158,6 @@ class _VideoPostState extends State<VideoPost>
                       child: child, //밑의 child를 받아온다
                     );
                   },
-
                   child: AnimatedOpacity(
                     opacity: _isPaused ? 1 : 0,
                     duration: _animationDuration,
@@ -199,6 +215,15 @@ class _VideoPostState extends State<VideoPost>
             right: 10,
             child: Column(
               children: [
+                GestureDetector(
+                  onTap: () => _onMuteTap(),
+                  child: VideoButton(
+                    icon:
+                        !_isMuted ? Icons.volume_up_rounded : Icons.volume_off,
+                    text: " ",
+                  ),
+                ),
+                Gaps.v16,
                 const CircleAvatar(
                   radius: 25,
                   backgroundColor: Colors.black,
