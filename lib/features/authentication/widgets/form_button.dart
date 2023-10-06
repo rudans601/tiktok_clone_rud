@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tiktok_clone/utils.dart';
 
 import '../../../constants/sizes.dart';
 
@@ -20,13 +21,14 @@ class FormButton extends StatelessWidget {
           vertical: Sizes.size16,
         ),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(
-            Sizes.size5,
-          ),
-          color: disabled //글씨가 하나라도 써지면 핑크 색상, 없으면 회색
-              ? Colors.grey.shade300
-              : Theme.of(context).primaryColor,
-        ),
+            borderRadius: BorderRadius.circular(
+              Sizes.size5,
+            ), //글씨가 하나라도 써지면 핑크 색상, 없으면 회색
+            color: disabled
+                ? isDarkMode(context)
+                    ? Colors.grey.shade800
+                    : Colors.grey.shade300
+                : Theme.of(context).primaryColor),
         child: AnimatedDefaultTextStyle(
           //텍스트를 애니메이션화한다
           duration: const Duration(microseconds: 300),
