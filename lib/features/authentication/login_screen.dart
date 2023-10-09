@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/authentication/widgets/auth_button.dart';
@@ -7,10 +8,12 @@ import 'package:tiktok_clone/features/authentication/widgets/login_form_screen.d
 import 'package:tiktok_clone/utils.dart';
 
 class LoginScreen extends StatelessWidget {
+  static String routeName = "login";
+  static String routeURL = "login";
   const LoginScreen({super.key});
 
   void onSignUpTap(BuildContext context) {
-    Navigator.of(context).pop();
+    context.pop();
   } //push 대신 pop을 사용
 
   void _onEmailLoginTap(BuildContext context) {
@@ -32,12 +35,12 @@ class LoginScreen extends StatelessWidget {
           child: Column(
             children: [
               Gaps.v80,
-              const Text(
+              Text(
                 "Log in for TicTok",
-                style: TextStyle(
-                  fontSize: Sizes.size24,
-                  fontWeight: FontWeight.w700,
-                ),
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineSmall!
+                    .copyWith(color: Colors.red),
               ),
               Gaps.v20,
               const Opacity(
@@ -69,12 +72,14 @@ class LoginScreen extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: BottomAppBar(
-        color: isDarkMode(context) ? null : Colors.grey.shade50,
-        elevation: 1, //그림자
+      bottomNavigationBar: Container(
+        color: isDarkMode(context)
+            ? Theme.of(context).bottomAppBarTheme.color
+            : Colors.grey.shade50,
         child: Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: Sizes.size32,
+          padding: const EdgeInsets.only(
+            top: Sizes.size32,
+            bottom: Sizes.size32,
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,

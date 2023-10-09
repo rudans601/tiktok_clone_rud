@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/breakpoints.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
+import 'package:tiktok_clone/utils.dart';
 
 import '../../constants/sizes.dart';
 
@@ -59,6 +60,9 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
             title: ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: Breakpoints.sm),
               child: CupertinoSearchTextField(
+                style: TextStyle(
+                  color: isDarkMode(context) ? Colors.white : Colors.black,
+                ),
                 controller: _textEditingController,
                 onChanged: _onSearchChanged,
                 onSubmitted: _onSearchSubmit,
@@ -74,8 +78,6 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                 fontWeight: FontWeight.w600,
                 fontSize: Sizes.size16,
               ),
-              unselectedLabelColor: Colors.grey.shade500,
-              labelColor: Colors.bldack,
               indicatorColor: Theme.of(context).tabBarTheme.indicatorColor,
               tabs: [
                 for (var tab in tabs)
@@ -125,6 +127,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                         style: TextStyle(
                           fontSize: Sizes.size16 + Sizes.size2,
                           fontWeight: FontWeight.bold,
+                          height: 1.1,
                         ),
                       ),
                       Gaps.v8,
@@ -132,7 +135,9 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                           constraints.maxWidth > 250)
                         DefaultTextStyle(
                           style: TextStyle(
-                            color: Colors.grey.shade600,
+                            color: isDarkMode(context)
+                                ? Colors.grey.shade300
+                                : Colors.grey.shade600,
                             fontWeight: FontWeight.w600,
                           ),
                           child: Row(

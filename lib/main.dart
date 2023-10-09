@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:tiktok_clone/features/main_navigation/main_navigation_screen.dart';
+import 'package:tiktok_clone/router.dart';
 
 import 'constants/sizes.dart';
 
@@ -19,25 +19,13 @@ class TikTokApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: router,
       debugShowCheckedModeBanner: false,
       title: 'TikTok Clone',
       themeMode: ThemeMode.system,
-      darkTheme: ThemeData(
-        brightness: Brightness.dark,
-        scaffoldBackgroundColor: Colors.black,
-        primaryColor: const Color(0xFFE9435A),
-        bottomAppBarTheme: BottomAppBarTheme(
-          color: Colors.grey.shade900,
-        ),
-        textTheme: Typography.whiteMountainView,
-        appBarTheme: AppBarTheme(
-          backgroundColor: Colors.grey.shade900,
-        ),
-        textSelectionTheme:
-            const TextSelectionThemeData(cursorColor: Color(0xFFE9435A)),
-      ),
       theme: ThemeData(
+        useMaterial3: true,
         brightness: Brightness.light,
         textTheme: Typography.blackMountainView,
         scaffoldBackgroundColor: Colors.white,
@@ -47,6 +35,7 @@ class TikTokApp extends StatelessWidget {
             const TextSelectionThemeData(cursorColor: Color(0xFFE9435A)),
         splashColor: Colors.transparent,
         appBarTheme: const AppBarTheme(
+          surfaceTintColor: Colors.white,
           foregroundColor: Colors.black,
           backgroundColor: Colors.white,
           elevation: 0,
@@ -60,8 +49,39 @@ class TikTokApp extends StatelessWidget {
           unselectedLabelColor: Colors.grey.shade500,
           indicatorColor: Colors.black,
         ),
+        listTileTheme: const ListTileThemeData(
+          iconColor: Colors.black,
+        ),
       ),
-      home: const MainNavigationScreen(), //기본값SingUpScreen
+      darkTheme: ThemeData(
+        useMaterial3: true,
+        tabBarTheme: TabBarTheme(
+          indicatorColor: Colors.white,
+          labelColor: Colors.white,
+          unselectedLabelColor: Colors.grey.shade700,
+        ),
+        brightness: Brightness.dark,
+        scaffoldBackgroundColor: Colors.black,
+        primaryColor: const Color(0xFFE9435A),
+        bottomAppBarTheme: BottomAppBarTheme(
+          color: Colors.grey.shade900,
+        ),
+        textTheme: Typography.whiteMountainView,
+        appBarTheme: AppBarTheme(
+          surfaceTintColor: Colors.grey.shade900,
+          backgroundColor: Colors.grey.shade900,
+          titleTextStyle: const TextStyle(
+            color: Colors.white,
+            fontSize: Sizes.size16 + Sizes.size2,
+            fontWeight: FontWeight.w600,
+          ),
+          actionsIconTheme: IconThemeData(color: Colors.grey.shade100),
+          iconTheme: IconThemeData(color: Colors.grey.shade100),
+        ),
+        textSelectionTheme:
+            const TextSelectionThemeData(cursorColor: Color(0xFFE9435A)),
+      ),
+      //기본값SingUpScreen
     );
   }
 }
