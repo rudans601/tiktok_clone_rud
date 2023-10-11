@@ -12,7 +12,7 @@ class EmailScreenArgs {
 }
 
 class EmailScreen extends StatefulWidget {
-  static String routeName = "/email"; //왜 얘만 슬레쉬 안넣어줬더니 에러 나지?
+  static String routeName = "email"; //왜 얘만 슬레쉬 안넣어줬더니 에러 나지?
   static String routeURL = "email";
   final String username;
   const EmailScreen({
