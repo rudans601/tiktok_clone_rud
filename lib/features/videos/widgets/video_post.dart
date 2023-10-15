@@ -7,6 +7,7 @@ import 'package:tiktok_clone/features/videos/widgets/video_comments.dart';
 import 'package:video_player/video_player.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
+import '../../../common/widgets/video_config/video_config.dart';
 import '../../../constants/sizes.dart';
 
 class VideoPost extends StatefulWidget {
@@ -172,6 +173,19 @@ class _VideoPostState extends State<VideoPost>
             ),
           ),
           Positioned(
+            left: 20,
+            top: 40,
+            child: IconButton(
+              icon: FaIcon(
+                VideoConfigData.of(context).autoMute
+                    ? FontAwesomeIcons.volumeOff
+                    : FontAwesomeIcons.volumeHigh,
+                color: Colors.white,
+              ),
+              onPressed: VideoConfigData.of(context).toggleMuted,
+            ),
+          ),
+          Positioned(
             bottom: 30,
             left: 10,
             child: Column(
@@ -215,15 +229,6 @@ class _VideoPostState extends State<VideoPost>
             right: 10,
             child: Column(
               children: [
-                GestureDetector(
-                  onTap: () => _onMuteTap(),
-                  child: VideoButton(
-                    icon:
-                        !_isMuted ? Icons.volume_up_rounded : Icons.volume_off,
-                    text: " ",
-                  ),
-                ),
-                Gaps.v16,
                 const CircleAvatar(
                   radius: 25,
                   backgroundColor: Colors.black,
