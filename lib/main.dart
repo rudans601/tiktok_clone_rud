@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
-import 'package:tiktok_clone/common/widgets/video_config/video_config.dart';
 
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/router.dart';
+
+import 'common/widgets/video_config/video_config.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,10 +21,7 @@ class TikTokApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // S.load(const Locale("en"));
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (context) => VideoConfig()),
-      ],
+    return VideoConfig(
       child: MaterialApp.router(
         routerConfig: router,
         debugShowCheckedModeBanner: false,
