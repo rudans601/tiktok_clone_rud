@@ -47,6 +47,7 @@ dependencies:
 
   gallery_saver: 2.3.2
   image_picker: 0.8.6+1
+  provider: 6.0.5
 
 dev_dependencies:
   flutter_test:
@@ -99,3 +100,4 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
