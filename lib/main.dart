@@ -15,15 +15,18 @@ void main() async {
       DeviceOrientation.portraitUp,
     ],
   );
-  final preferences = await SharedPreferences.getInstance();
-  final repository = PlaybackConfigRepository(preferences);
+  final preferences =
+      await SharedPreferences.getInstance(); //repository에는 preference객체가 필요하다
+  final repository =
+      PlaybackConfigRepository(preferences); //viewmodel에서는 repository가 필요하다
 
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(
           //이상 있으면 다시 체크
-          create: (context) => PlaybackConfigViewModel(repository),
+          create: (context) =>
+              PlaybackConfigViewModel(repository), //viewmodel의 정보를 작성해주기?
         ),
       ],
       child: const TikTokApp(),

@@ -202,9 +202,10 @@ class _VideoPostState extends State<VideoPost>
                 color: Colors.white,
               ),
               onPressed: () {
-                context
-                    .read<PlaybackConfigViewModel>()
-                    .setMuted(!context.watch<PlaybackConfigViewModel>().muted);
+                _onMuteTap();
+                // context
+                //     .read<PlaybackConfigViewModel>()
+                //     .setMuted(!context.watch<PlaybackConfigViewModel>().muted);
               },
             ),
           ),
