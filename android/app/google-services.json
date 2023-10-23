@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "968945988064",
+    "project_id": "tiktok-rud",
+    "storage_bucket": "tiktok-rud.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:968945988064:android:11dd8a4b796f3225527b85",
+        "android_client_info": {
+          "package_name": "com.example.tiktok_clone"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCe63H8HnRhZP0RWsL2i2iexujyhDQjhk8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
