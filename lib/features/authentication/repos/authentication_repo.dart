@@ -9,8 +9,8 @@ class AuthenticationRepository {
 
   Stream<User?> authStateChanges() => _firebaseAuth.authStateChanges();
 
-  Future<void> emailSignUp(String email, String password) async {
-    await _firebaseAuth.createUserWithEmailAndPassword(
+  Future<UserCredential> emailSignUp(String email, String password) async {
+    return await _firebaseAuth.createUserWithEmailAndPassword(
         //이메일과 비밀번호를 회원으로 추가
         email: email,
         password: password);
