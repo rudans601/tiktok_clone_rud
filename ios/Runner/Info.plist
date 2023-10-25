@@ -28,7 +28,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string></string>
+			<string>GeneralSetting</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>app-1-968945988064-ios-ae02a7bb2c25e3d2527b85</string>

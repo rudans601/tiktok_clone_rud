@@ -26,6 +26,11 @@ class AuthenticationRepository {
       password: password,
     );
   }
+
+  Future<void> githubSignIn() async {
+    await _firebaseAuth
+        .signInWithProvider(GithubAuthProvider()); //github, apple, 변경 가능
+  }
 }
 
 final authRepo = Provider((ref) => AuthenticationRepository());
