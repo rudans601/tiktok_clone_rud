@@ -7,7 +7,8 @@ class AuthenticationRepository {
   bool get isLoggedIn => user != null;
   User? get user => _firebaseAuth.currentUser;
 
-  Stream<User?> authStateChanges() => _firebaseAuth.authStateChanges();
+  Stream<User?> authStateChanges() => _firebaseAuth
+      .authStateChanges(); //firebaseAuth의 stream을 노출시키기 유저가 인증됐는지(로그인)됐는지 확인하는 함수?
 
   Future<UserCredential> emailSignUp(String email, String password) async {
     return await _firebaseAuth.createUserWithEmailAndPassword(
@@ -35,7 +36,7 @@ class AuthenticationRepository {
 
 final authRepo = Provider((ref) => AuthenticationRepository());
 final authState = StreamProvider(
-  //유저의 인증상태 변화를 감지하는 provider
+  //유저의 인증상태 변화를 감지하는 provider, 10행
   (ref) {
     final repo = ref.read(authRepo);
     return repo.authStateChanges();

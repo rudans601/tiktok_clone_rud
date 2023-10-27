@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -30,10 +29,11 @@ class SignUpViewModel extends AsyncNotifier<void> {
           form["password"],
         );
 
-        await users.createAcount(userCredential);
+        await users.createProfile(userCredential);
       },
     );
     if (state.hasError) {
+      //가입을 못했을때,
       showFirebaseErrorSnack(context, state.error);
     } else {
       context.goNamed(InterestsScreen.routeName);
