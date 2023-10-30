@@ -20,11 +20,12 @@ class UsersViewModel extends AsyncNotifier<UserProfileModel> {
     state = const AsyncValue.loading();
 
     final profile = UserProfileModel(
-      bio: "",
       link: "",
       email: credential.user!.email ?? "anon@anon.com",
       uid: credential.user!.uid,
+      bio: "",
       name: credential.user!.displayName ?? "Anon",
+      birth: "",
     );
 
     await _repository.createProfile(profile);
