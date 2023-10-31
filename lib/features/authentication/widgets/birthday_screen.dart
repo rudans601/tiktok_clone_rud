@@ -127,6 +127,3 @@ class _BirthdayScreenState extends ConsumerState<BirthdayScreen> {
     );
   }
 }
-
-final birthdayProvider =
-    Provider<BirthdayScreen, void>((ref) => const BirthdayScreen());

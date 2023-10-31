@@ -4,10 +4,10 @@ class UserProfileModel {
   final String name;
   final String bio;
   final String link;
-  final String birth;
+  final String birthday;
 
   UserProfileModel({
-    required this.birth,
+    required this.birthday,
     required this.uid,
     required this.email,
     required this.name,
@@ -21,7 +21,15 @@ class UserProfileModel {
         name = "",
         bio = "",
         link = "",
-        birth = "";
+        birthday = "";
+
+  UserProfileModel.fromJson(Map<String, dynamic> json)
+      : uid = json["uid"],
+        email = json["email"],
+        name = json["name"],
+        bio = json["bio"],
+        link = json["link"],
+        birthday = json["birthday"];
 
   Map<String, String> toJson() {
     return {
@@ -30,7 +38,7 @@ class UserProfileModel {
       "name": name,
       "bio": bio,
       "link": link,
-      "birth": birth,
+      "birth": birthday,
     };
   }
 }
