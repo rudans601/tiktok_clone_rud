@@ -41,7 +41,7 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen> {
     setState(() {});
   }
 
-//데이터 자동 갱신만 찾아보기
+//데이터 자동 갱신만 찾아보기 https://seosh817.tistory.com/284
 
   @override
   Widget build(BuildContext context) {
