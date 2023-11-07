@@ -7,6 +7,8 @@ class AuthenticationRepository {
   bool get isLoggedIn => user != null;
   User? get user => _firebaseAuth.currentUser;
 
+  String get uid => null;
+
   Stream<User?> authStateChanges() => _firebaseAuth
       .authStateChanges(); //firebaseAuth의 stream을 노출시키기 유저가 인증됐는지(로그인)됐는지 확인하는 함수?
 

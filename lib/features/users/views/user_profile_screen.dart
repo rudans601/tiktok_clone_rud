@@ -38,7 +38,6 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen> {
         isScrollControlled: true,
         backgroundColor: Colors.transparent,
         builder: (context) => const UserProfileSettingScreen());
-    setState(() {});
   }
 
 //데이터 자동 갱신만 찾아보기 https://seosh817.tistory.com/284

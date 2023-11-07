@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tiktok_clone/constants/breakpoints.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
@@ -25,11 +26,10 @@ class _UserProfileSettingScreenState
 
   void _onCompletePressed() async {
     if (_bio.isNotEmpty && _link.isNotEmpty) {
-      //await ref.read(avatarProvider.notifier).
       await ref.read(usersProvider.notifier).onUpdateUserBio(_bio);
       await ref.read(usersProvider.notifier).onUpdateUserLink(_link);
 
-      Navigator.of(context).pop();
+      context.pop();
     }
   }
 
