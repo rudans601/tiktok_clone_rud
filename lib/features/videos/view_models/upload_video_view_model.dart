@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tiktok_clone/features/authentication/repos/authentication_repo.dart';
 import 'package:tiktok_clone/features/users/view_models/users_view_model.dart';
 import 'package:tiktok_clone/features/videos/models/video_model.dart';
@@ -14,7 +16,7 @@ class UploadVideoViewModel extends AsyncNotifier<void> {
     _repository = ref.read(videosRepo);
   }
 
-  Future<void> uploadVideo(File video) async {
+  Future<void> uploadVideo(File video, BuildContext context) async {
     final user = ref.read(authRepo).user;
     final userProfile = ref.read(usersProvider).value;
 
@@ -40,9 +42,13 @@ class UploadVideoViewModel extends AsyncNotifier<void> {
                 creater: userProfile.name,
               ),
             );
+            context.pushReplacement("/home");
           }
         },
       );
     }
   }
 }
+
+final uploadVideoProvider = AsyncNotifierProvider<UploadVideoViewModel, void>(
+    () => UploadVideoViewModel());

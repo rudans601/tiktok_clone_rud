@@ -21,18 +21,17 @@ class VideoModel {
     required this.creater,
   });
 
-
-  Map<String, dynamic> toJson(){
+  Map<String, dynamic> toJson() {
     return {
-      "title" : title,
-      "description" : description,
-      "fileUrl" : fileUrl,
-      "thumbnailUrl" : thumbnailUrl,
-      "creatorUid" : creatorUid,
-      "creater" : creater,
-      "likes" : likes,
-      "comments" : comments,
-      "createdAt" : createdAt,
-    }
+      "title": title,
+      "description": description,
+      "fileUrl": fileUrl,
+      "thumbnailUrl": thumbnailUrl,
+      "creatorUid": creatorUid,
+      "creater": creater,
+      "likes": likes,
+      "comments": comments,
+      "createdAt": createdAt,
+    };
   }
 }
