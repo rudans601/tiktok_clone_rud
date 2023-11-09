@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "firebase-tools": "^12.8.1",
+    "webpack": "^5.89.0"
+  }
+}
